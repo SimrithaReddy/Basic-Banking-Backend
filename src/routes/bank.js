@@ -3,6 +3,7 @@ const Details = require("../models/user")
 const bodyParser = require('body-parser')
 
 // Your routing code goes here
+router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({ extended: false }));
 
 router.get('/', async (req, res) => {
@@ -45,6 +46,7 @@ router.post('/transfers', async (req, res) => {
         }
         
         let num1 = send_ac[0].balance
+        return res.json(num1)
         let num2 = receive_ac[0].balance
         num1 = parseFloat(num1)
         num2 = parseFloat(num2)
