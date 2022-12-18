@@ -46,7 +46,7 @@ router.post('/transfers', async (req, res) => {
         }
         
         let num1 = send_ac[0].balance
-        return res.json(num1)
+        return res.json(send_ac)
         let num2 = receive_ac[0].balance
         num1 = parseFloat(num1)
         num2 = parseFloat(num2)
