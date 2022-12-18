@@ -33,15 +33,9 @@ router.post('/users', async (req, res) => {
 
 router.post('/transfers', async (req, res) => {
     try {
-        
-
- 
-        let send_ac = await Details.find({ account: req.body.sender })
-        
-       
-        let receive_ac = await Details.find({ account: req.body.receiver })
-        
-        
+      let send_ac = await Details.find({ account: req.body.sender })
+       let receive_ac = await Details.find({ account: req.body.receiver })
+     
         if(send_ac[0].account === receive_ac[0].account){
             return res.json("ok")
         }
@@ -50,14 +44,15 @@ router.post('/transfers', async (req, res) => {
         let num2 = receive_ac[0].balance
         num1 = parseFloat(num1)
         num2 = parseFloat(num2)
+        let amount = parseFloat(req.body.amount)
         
         if(send_ac.length!=0 && receive_ac.length != 0){
         if (amount > 0 && num1 > 0) {
             num1 = num1 - amount
             num2 = num2 + amount
 
-            let x = await Details.updateOne({ account: sender }, { $set: { balance: num1 } })
-            let y = await Details.updateOne({ account: receiver }, { $set: { balance: num2 } })
+            let x = await Details.updateOne({ account: req.body.sender }, { $set: { balance: num1 } })
+            let y = await Details.updateOne({ account: req.body.receiver }, { $set: { balance: num2 } })
             res.json(num1)
         }
         }
