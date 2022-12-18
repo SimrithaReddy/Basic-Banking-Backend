@@ -11,10 +11,6 @@ app.use(express.json())
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.urlencoded({ extended: true }));
-// app.use((req, res, next) => {
-//     res.setHeader("Access-Control-Allow-Origin", "*");
-//     next();
-// })
 
 // Import routes
 const bankHistory = require('./routes/bank')
