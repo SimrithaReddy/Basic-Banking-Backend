@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const transcationSchema = new mongoose.Schema({
     // Your code goes here
-    sender: { type: String, required: true },
-    receiver: { type: String ,unique:true},
+    sender: { type: String },
+    receiver: { type: String },
     amount: { type: String },
 })
 
