@@ -32,18 +32,15 @@ router.post('/users', async (req, res) => {
 
 router.post('/transfers', async (req, res) => {
     try {
-        let { sender, receiver, amount } = req.body;
-        amount = parseFloat(amount)
         
-      
-
-        let send_ac = await Details.find({ account: sender })
+ 
+        let send_ac = await Details.find({ account: req.body.sender })
         
        
-        let receive_ac = await Details.find({ account: receiver })
+        let receive_ac = await Details.find({ account: req.body.receiver })
          return res.json({
-             sender: sender,
-             receive_ac
+             send_ac,
+             amount: req.body.amount
          })
         
         if(send_ac[0].account === receive_ac[0].account){
