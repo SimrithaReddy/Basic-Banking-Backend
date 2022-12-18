@@ -41,7 +41,10 @@ router.post('/transfers', async (req, res) => {
         
        
         let receive_ac = await Details.find({ account: receiver })
-         return res.json(receive_ac)
+         return res.json({
+             sender: sender,
+             receive_ac
+         })
         
         if(send_ac[0].account === receive_ac[0].account){
             return res.json("ok")
