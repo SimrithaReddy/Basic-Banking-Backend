@@ -34,22 +34,29 @@ router.post('/users/send', async (req, res) => {
         let { sender, receiver, amount } = req.body;
         amount = parseFloat(amount)
 
-        if(sender===receiver) return res.json("ok")
+//         if(sender===receiver) return res.json("ok")
 
         let send_ac = await Details.find({ account: sender })
         let receive_ac = await Details.find({ account: receiver })
 
-        if (send_ac.length == 0) {
-            return res.json("Invalid account Number of sender")
-        } else if (receive_ac.length == 0) {
-            return res.json("Invalid account Number of receiver")
-        }e
-
+//         if (send_ac.a == 0) {
+//             return res.json("Invalid account Number of sender")
+//         } else if (receive_ac.length == 0) {
+//             return res.json("Invalid account Number of receiver")
+//         }
+        
+        if(send_ac[0].account === receive_ac[0].account){
+            return res.json({
+                status:"ok"
+            })
+        }
+        
         let num1 = send_ac[0].balance
         let num2 = receive_ac[0].balance
         num1 = parseFloat(num1)
         num2 = parseFloat(num2)
-
+        
+        if(send_ac.length!=0 && receive_ac.length != 0){
         if (amount > 0 && num1 > 0) {
             num1 = num1 - amount
             num2 = num2 + amount
@@ -59,6 +66,7 @@ router.post('/users/send', async (req, res) => {
             res.json({
                 num1, num2
             })
+        }
         }
 
     } catch (e) {
