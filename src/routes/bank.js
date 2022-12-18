@@ -47,9 +47,7 @@ router.post('/transfers', async (req, res) => {
 //         }
         
         if(send_ac[0].account === receive_ac[0].account){
-            return res.json({
-                status:"ok"
-            })
+            return res.json("ok")
         }
         
         let num1 = send_ac[0].balance
@@ -64,9 +62,7 @@ router.post('/transfers', async (req, res) => {
 
             let x = await Details.updateOne({ account: sender }, { $set: { balance: num1 } })
             let y = await Details.updateOne({ account: receiver }, { $set: { balance: num2 } })
-            res.json({
-                num1, num2
-            })
+            res.json("ok")
         }
         }
 
