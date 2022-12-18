@@ -29,7 +29,7 @@ router.post('/users', async (req, res) => {
 })
 
 
-router.post('/users/send', async (req, res) => {
+router.post('/transfers', async (req, res) => {
     try {
         let { sender, receiver, amount } = req.body;
         amount = parseFloat(amount)
