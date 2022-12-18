@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const Details = require("../models/user")
+const bodyParser = require('body-parser')
 
 // Your routing code goes here
-
+router.use(bodyParser.urlencoded({ extended: false }));
 
 router.get('/', async (req, res) => {
     try {
