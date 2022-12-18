@@ -47,7 +47,6 @@ router.post('/transfers', async (req, res) => {
         }
         
         let num1 = send_ac[0].balance
-        return res.json(send_ac)
         let num2 = receive_ac[0].balance
         num1 = parseFloat(num1)
         num2 = parseFloat(num2)
@@ -59,7 +58,7 @@ router.post('/transfers', async (req, res) => {
 
             let x = await Details.updateOne({ account: sender }, { $set: { balance: num1 } })
             let y = await Details.updateOne({ account: receiver }, { $set: { balance: num2 } })
-            res.json("ok")
+            res.json(num1)
         }
         }
 
