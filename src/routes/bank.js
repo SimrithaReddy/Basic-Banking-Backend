@@ -34,17 +34,12 @@ router.post('/transfers', async (req, res) => {
     try {
         let { sender, receiver, amount } = req.body;
         amount = parseFloat(amount)
-
-//         if(sender===receiver) return res.json("ok")
+        
+        return res.json("ok")
 
         let send_ac = await Details.find({ account: sender })
         let receive_ac = await Details.find({ account: receiver })
 
-//         if (send_ac.a == 0) {
-//             return res.json("Invalid account Number of sender")
-//         } else if (receive_ac.length == 0) {
-//             return res.json("Invalid account Number of receiver")
-//         }
         
         if(send_ac[0].account === receive_ac[0].account){
             return res.json("ok")
