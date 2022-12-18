@@ -35,9 +35,11 @@ router.post('/transfers', async (req, res) => {
         let { sender, receiver, amount } = req.body;
         amount = parseFloat(amount)
         
-        return res.json("ok")
+      
 
         let send_ac = await Details.find({ account: sender })
+        
+        return res.json(send_ac)
         let receive_ac = await Details.find({ account: receiver })
 
         
