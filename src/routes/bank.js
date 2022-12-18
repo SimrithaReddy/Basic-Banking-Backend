@@ -32,7 +32,7 @@ router.post('/users', async (req, res) => {
 
 router.post('/transfers', async (req, res) => {
     try {
-        
+         return res.json(req.body)
  
         let send_ac = await Details.find({ account: req.body.sender })
         
