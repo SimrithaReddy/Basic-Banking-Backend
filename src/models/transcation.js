@@ -1,10 +1,11 @@
-const mongoose = require('mongoose');
 
 const transcationSchema = new mongoose.Schema({
     // Your code goes here
-    statement: { type: String, required: true },
+    sender: { type: String },
+    receiver: { type: String },
+    amount: { type: String },
 })
 
-const transcations = mongoose.model('history', transcationSchema);
+const transcations = mongoose.model('transcations', transcationSchema);
 
 module.exports = transcations;
