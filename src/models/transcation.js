@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+mongoose.set('strictQuery', false)
 
 const transcationSchema = new mongoose.Schema({
     // Your code goes here
