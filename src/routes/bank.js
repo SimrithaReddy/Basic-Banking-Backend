@@ -42,9 +42,9 @@ router.post('/transfers', async (req, res) => {
         if(send_ac[0].account === receive_ac[0].account){
             num1 = num1 + amount
             let x = await Details.updateOne({ account: req.body.sender }, { $set: { balance: num1 } })
-              const date=new Date().toLocaleDateString()
+            const date=new Date().toLocaleDateString()
             const hist=await Transcations.create({
-                statement: `${date}: A/C: ${receiver} is credited with Rs.${amount} by debit from A/C: ${sender}`
+                statement: `${date}: A/C: ${req.body.receiver } is credited with Rs.${amount} by debit from A/C: ${req.body.sender}`
             })
             return res.json(send_ac[0])
         }
@@ -62,9 +62,9 @@ router.post('/transfers', async (req, res) => {
             let y = await Details.updateOne({ account: req.body.receiver }, { $set: { balance: num2 } })
             const date=new Date().toLocaleDateString()
             const hist=await Transcations.create({
-                statement: `${date}: A/C: ${receiver} is credited with Rs.${amount} by debit from A/C: ${sender}`
+                statement: `${date}: A/C: ${req.body.receiver } is credited with Rs.${amount} by debit from A/C: ${req.body.sender}`
             })
-           return res.json(send_ac[0])
+           return res.json(hist)
         }
         }
 
