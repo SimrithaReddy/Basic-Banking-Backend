@@ -27,22 +27,6 @@ router.get('/details', async (req, res) => {
 })
 
 
-router.post('/users', async (req, res) => {
-    try {
-        let details = await Details.create({
-            name: req.body.name,
-            email: req.body.email,
-            account: req.body.account,
-            balance: req.body.balance
-        })
-        res.json(details)
-    } catch (e) {
-        res.sendStatus(404).json(e.message)
-    }
-})
-
-
-
 router.post('/transfers', async (req, res) => {
     try {  
 
@@ -67,7 +51,7 @@ router.post('/transfers', async (req, res) => {
             num1 = num1 + amount
             let x = await Details.updateOne({ account: req.body.sender }, { $set: { balance: num1 } })
             main();
-            return res.json(x)
+            return res.json(send_ac[0])
         }
 
         if(amount<0 || amount > num1) return res.json(0)
@@ -81,7 +65,7 @@ router.post('/transfers', async (req, res) => {
 
             let x = await Details.updateOne({ account: req.body.sender }, { $set: { balance: num1 } })
             let y = await Details.updateOne({ account: req.body.receiver }, { $set: { balance: num2 } })
-           return res.json("ok")
+           return res.json(send_ac[0])
         }
         }
 
