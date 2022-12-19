@@ -42,11 +42,7 @@ router.post('/transfers', async (req, res) => {
         if(send_ac[0].account === receive_ac[0].account){
             num1 = num1 + amount
             let x = await Details.updateOne({ account: req.body.sender }, { $set: { balance: num1 } })
-             const createHistory = await Transcations.create({
-                sender: req.body.sender,
-                receiver: req.body.receiver,
-                amount: req.body.amount
-            })
+             
             return res.json(send_ac[0])
         }
 
@@ -55,11 +51,7 @@ router.post('/transfers', async (req, res) => {
         
         if(send_ac.length!=0 && receive_ac.length != 0){
         if (amount > 0 && num1 > 0 && (amount < num1 || amount == num1 )) {
-             const createHistory = await Transcations.create({
-                sender: req.body.sender,
-                receiver: req.body.receiver,
-                amount: req.body.amount
-            })
+            
             num1 = num1 - amount
             num2 = num2 + amount
 
