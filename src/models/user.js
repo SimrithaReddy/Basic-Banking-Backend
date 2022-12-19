@@ -5,7 +5,7 @@ const userDetails = new mongoose.Schema({
     // Your code goes here
     name: { type: String, required: true },
     email: { type: String ,unique:true},
-    account: { type: String },
+    account: { type: String, unique:true },
     balance: { type: String }
 })
 
