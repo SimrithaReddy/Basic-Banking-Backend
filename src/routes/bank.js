@@ -44,7 +44,7 @@ router.post('/transfers', async (req, res) => {
             let x = await Details.updateOne({ account: req.body.sender }, { $set: { balance: num1 } })
             const date=new Date().toLocaleDateString()
             const hist=await Transcations.create({
-                statement: `${date}: A/C: ${req.body.receiver } is credited with Rs.${amount} by debit from A/C: ${req.body.sender}`
+                statement: `${date}: A/C: ${req.body.receiver } is credited with Rs.${amount}`
             })
             return res.json(send_ac[0])
         }
