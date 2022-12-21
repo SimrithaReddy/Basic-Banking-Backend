@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
 
 router.get('/details', async (req, res) => {
     try {
-        let history = await Transcations.find().sort({ _id: -1 })
+        let history = await Transcations.find()
         res.json(history)
     } catch (e) {
         res.sendStatus(404).json(e.message)
